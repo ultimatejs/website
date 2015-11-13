@@ -1,0 +1,75 @@
+<template name="Toc">
+	<div class="docs-toc" style="display: none;">
+		{{#unless get 'showBookmarks'}}
+			{{> TocMethods}}
+		{{else}}
+			{{> MyBookmarks}}
+		{{/unless}}
+	</div>
+</template>
+
+
+<template name="TocMethods">
+	<div class="panel-heading">Table of Contents 
+		{{#if hasBookmarks}}<span class="glyphicon glyphicon-bookmark toc-switch"></span>{{/if}}
+	</div>
+	
+	<div class="panel-body">
+		{{#if isMethodsByType 'overview' true}}
+			{{#unless isContentOnlyClass}}
+				<div class="methods-group">class overview</div>
+			{{/unless}}
+		
+			{{#each methodsByType 'overview' true}}
+				<a class="method-toc {{active}}" _id="{{_id}}" hash="{{hash}}">{{tocName}}</a>
+			{{/each}}
+		{{/if}}
+	
+	
+		{{#if isMethodsByType 'scope' 'instance'}}
+			<div class="methods-group">instance methods</div>
+		
+			{{#each methodsByType 'scope' 'instance'}}
+				<a class="method-toc {{active}}" _id="{{_id}}" hash="{{hash}}">{{tocName}}</a>
+			{{/each}}
+		{{/if}}
+	
+	
+		{{#if isMethodsByType 'scope' 'static'}}
+			<div class="methods-group">static methods</div>
+		
+			{{#each methodsByType 'scope' 'static'}}
+				<a class="method-toc {{active}}" _id="{{_id}}" hash="{{hash}}">{{tocName}}</a>
+			{{/each}}
+		{{/if}}
+	</div>
+	
+	
+	<div class="panel-footer">
+		<span class="glyphicon glyphicon-step-backward {{disabledStep 'step-backward'}}"></span>
+		<span class="glyphicon glyphicon-backward {{disabled 'backward'}}"></span>
+		
+		
+		<span class="glyphicon glyphicon-forward {{disabled 'forward'}}" style="margin-left:106px;"></span>
+		<span class="glyphicon glyphicon-step-forward {{disabledStep 'step-forward'}}"></span>
+		
+		<div id="bookmark" class="floating-action-button float-large {{bookmarked}}" style="box-shadow: none;">
+			<span class="glyphicon glyphicon-bookmark"></span>
+		</div>
+	</div>
+</template>
+
+
+<template name="MyBookmarks">
+	<div class="panel-heading"><span style="color: #FFF944;">My Bookmarks</span>
+		<span class="glyphicon glyphicon-arrow-right toc-switch"></span>
+	</div>
+	
+	<div class="panel-body">
+		{{#each currentUser.bookmarks}}
+			{{#with method}}
+				<a class="method-toc" _id="{{_id}}" hash="{{hash}}">{{tocName}}</a>
+			{{/with}}
+		{{/each}}
+	</div>
+</template>

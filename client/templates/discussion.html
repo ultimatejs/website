@@ -1,0 +1,96 @@
+<template name="Discuss">
+	<div class="queue-container discussion" style="height: {{windowHeight 95}}px; background-color: rgb(223, 225, 228);">
+		
+		{{> KindSidebar}}
+		
+		<div class="task-list list-group" style="width: {{sidebarWidth}}px; overflow-x:hidden;">
+			<table class="table dataTable topic-table">
+				<thead>
+				  <tr>
+						<th class="col-topic">Topic</th>
+					  <th class="col-category">Category 
+							<span class="glyphicon glyphicon-triangle-bottom" style="position:relative; left: 10px; top: 3px;"></span>
+						</th>
+					  <th class="col-posters">Users</th>
+						<th class="sorting col-posts">Replies</th>
+						<th class="sorting col-views">Views</th>
+						<th class="sorting col-activity">Activity</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					{{#each topics}}
+						{{> TopicRow}}
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	
+		<div class="tasks-slider" style="width: {{contentWidth}}px;">
+			<div class="task-container" style="width: 100%">
+				{{#if get 'activeTopicId'}}
+					{{#if isSelectedTopicAvailable}}
+						{{> TopicSlider currentTopic=selectedTopicAsCursor}}
+					{{else}}
+						{{> ProgressBar}}
+					{{/if}}
+				{{else}}
+					{{> ActionButtons}}
+				{{/if}}
+			</div>
+		</div>
+	
+	</div>
+</template>
+
+
+<template name="KindSidebar">
+	<ul class="kind-sidebar">
+		{{> KindButton title="Announce" count="69" glyph="bullhorn"}}
+		{{> KindButton title="Forum" count="69" glyph="user"}}
+		{{> KindButton title="Issues" count="69" glyph="tag"}}
+		{{> KindButton title="Features" count="69" glyph="star"}}
+	</ul>
+</template>
+
+<template name="KindButton">
+	<li class="{{activeKind}}">
+		<span class="badge">{{count}}</span>
+		<span class="glyphicon glyphicon-{{glyph}}"></span>
+		<span class="title">{{title}}</span>
+	</li>
+</template>
+
+
+<template name="TopicSlider">
+	<div class="topic-slider" style="width: 88%; margin-left: 6%;">
+		{{#each selectedTopicAsCursor}}
+			{{> TopicContainer}}
+		{{/each}}
+	</div>
+</template>
+
+
+<template name="TopicRow">
+	<tr href="#" class="sidebar-row list-group-item" style="height: 70px;">
+		<td class="col-md-6">
+		  <h4 class="list-group-item-heading">{{title}} {{title}} {{title}} {{title}} {{title}} {{title}}</h4>
+		</td>
+		
+		<td style="padding-top: 30px;">
+			<span class="topic-row-category">deployment</span>
+		</td>
+		
+		<td style="padding-top: 25px;">
+			<img src="https://avatars.githubusercontent.com/faceyspacey" class="topic-avatar" />
+			<img src="https://avatars.githubusercontent.com/faceyspacey" class="topic-avatar" />
+			<img src="https://avatars.githubusercontent.com/faceyspacey" class="topic-avatar" />
+			<img src="https://avatars.githubusercontent.com/faceyspacey" class="topic-avatar" />
+			<img src="https://avatars.githubusercontent.com/faceyspacey" class="topic-avatar" />
+		</td>
+		
+		<td class="topic-count" style="font-weight:bold;">12</td>
+		<td class="topic-count">123</td>
+		<td class="topic-count">{{fromNow "Wed Nov 04 2015 05:27:47 GMT-0800 (PST)"}}</td>
+	</tr>
+</template>

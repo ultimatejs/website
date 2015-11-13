@@ -1,0 +1,31 @@
+<template name="MethodsContainer">
+	<div style="position: absolute; width: 80%; margin-left: 3%; padding-bottom: {{windowHeight 275}}px">
+		{{#each class.methodsByType 'overview' true}}
+			<div class='method-container' _id="{{this._id}}" hash="{{hash}}">
+				{{> ContentBox}}
+			</div>
+		{{/each}}
+	
+	
+		{{#each class.methodsByType 'scope' 'instance'}}
+			<div class='method-container' _id="{{this._id}}" hash="{{hash}}">
+				{{> TitleBox}}
+	
+				{{#if params}} {{> ApiBox rows=params title='arguments'}} {{/if}}
+				{{#if options}} {{> ApiBox rows=options title='options'}} {{/if}}
+				{{#if config}} {{> ApiBox rows=config title='config'}} {{/if}}
+			</div>
+		{{/each}}
+	
+	
+		{{#each class.methodsByType 'scope' 'static'}}
+			<div class='method-container' _id="{{this._id}}" hash="{{hash}}">
+				{{> TitleBox}}
+	
+				{{#if params}} {{> ApiBox rows=params title='arguments'}} {{/if}}
+				{{#if options}} {{> ApiBox rows=options title='options'}} {{/if}}
+				{{#if config}} {{> ApiBox rows=config title='config'}} {{/if}}
+			</div>
+		{{/each}}
+	</div>
+</template>

@@ -1,0 +1,13 @@
+<template name="ContentBox">
+	<div class="section-title" _id="{{this._id}}" hash="{{hash}}">{{title}}</div>
+	
+	<div class="panel panel-default" style="padding-top: 10px;">		
+		<div class="panel-body">
+			{{#markdown}}
+{{content}}
+			{{/markdown}}
+		</div>
+		
+		<div class="panel-footer" style="height: 15px;"></div>
+	</div>
+</template>

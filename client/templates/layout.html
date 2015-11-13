@@ -1,0 +1,45 @@
+<head>
+  <title>Ultimate MVC</title>
+
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta charset="utf-8">
+	
+	<link rel="shortcut icon" href="/favicon.png">
+	
+  <script>
+    /* yeah we need this empty stylesheet here. It's cool chrome & chromium fix
+    chrome fix https://code.google.com/p/chromium/issues/detail?id=167083
+    https://code.google.com/p/chromium/issues/detail?id=332189
+    */
+  </script>
+</head>
+
+
+<template name="layout">
+  {{> navbar}}
+
+  <div class="wrap">
+
+    <div class="content container" style="width:100%;">
+			<div class="row">{{> flashMessages}}</div>
+			
+      <section class="widget">			
+        <div class="body">
+          <div class="mt">{{> yield}}</div>
+        </div>     
+      </section>
+    </div>
+
+
+    <div class="loader-wrap hiding hide">
+      <i class="fa fa-circle-o-notch fa-spin"></i>
+    </div>
+  </div>
+	
+  {{> footer}}
+</template>
+
+

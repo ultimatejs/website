@@ -1,0 +1,77 @@
+<template name="Docs">
+	{{#if ready 0}}
+		<div class="queue-container" style="height: {{windowHeight 95}}px; background-color: rgb(223, 225, 228);">
+			<div class="task-list list-group" style="width: 300px; overflow-x:hidden;">
+				{{> DocGroupBar}}
+				{{#each extensions}}
+					{{> ExtensionRow}}
+				{{/each}}
+			</div>
+		
+			<div class="tasks-slider" style="width: {{windowWidth 300}}px;">
+				<div class="task-container" style="width: 100%">
+					{{#if session 'activeClassId'}}
+						{{#if isSelectedClassAvailable}}
+							{{> ClassSlider classes=selectedClassAsCursor}}
+						{{else}}
+							{{> ProgressBar}}
+						{{/if}}
+					{{/if}}
+				</div>
+			</div>
+
+		</div>
+	{{/if}}
+</template>
+
+
+
+<template name="ClassSlider">
+	<div class="class-slider">
+		{{#each classes}}
+			{{> MethodsContainer class=this}}
+		{{/each}}
+		
+		{{#each classes}}
+			{{> Toc}}
+		{{/each}}
+	</div>
+</template>
+
+
+
+
+<template name="DocGroupBar">
+	<div href="#" class="list-group-item row select-task doc-group-row">
+		Group of Docs
+	</div>
+</template>
+
+
+<template name="ExtensionRow">
+	<a class_id="{{firstClassId}}" href="#" class="sidebar-row list-group-item row select-extension {{activeExtension}}">
+		<div class="col-md-9" style="padding-left: 8px; padding-right: 0px;">
+		  <h4 class="list-group-item-heading">{{name}}</h4>
+			{{#if subtitle}}<p class="list-group-item-text">{{subtitle}}</p>{{/if}}
+		</div>
+	</a>
+	
+	{{#if hasMultipleClasses}}
+		{{#each classes}}
+			<a class_id="{{_id}}" href="#" class="sidebar-row list-group-item row select-class {{showClass}} {{activeClass}}" style="opacity: 1;">
+				<div class="col-md-9" style="padding-left: 8px; padding-right: 0px;">
+				  <h4 class="list-group-item-heading" style="font-size: 18px;">{{name}}</h4>
+				</div>
+			</a>
+		{{/each}}	
+	{{/if}}
+</template>
+
+
+<template name="ProgressBar">
+	<div class="row" style="padding: 400px 100px;">	
+		<div class="progress progress-striped active">
+		  <div class="progress-bar" style="width: 35%;"></div>
+		</div>
+	</div>
+</template>

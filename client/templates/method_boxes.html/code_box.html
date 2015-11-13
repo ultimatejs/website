@@ -1,0 +1,13 @@
+<template name="ExampleBox">
+	<div class="section-title">Example</div>
+	
+	<div class="panel panel-default">
+		{{#if example_title}}
+			<div class="panel-heading method-box">{{example_title}}</div>
+		{{/if}}
+		
+		<div class="panel-body">
+			{{{highlight someCode}}}
+		</div>
+	</div>
+</template>

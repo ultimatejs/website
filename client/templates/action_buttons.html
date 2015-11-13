@@ -1,0 +1,43 @@
+<template name="ActionButtons">
+	<div class="action-button-container">
+		{{#if get 'activeTopicId'}}
+			<div class="small-action-buttons">
+				<div id="back" class="back floating-action-button float-small" style="background: black" data-toggle="tooltip" data-placement="left" title data-original-title="BACK">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+				</div>
+			
+				<div id="next" class="back floating-action-button float-small" style="background: red" data-toggle="tooltip" data-placement="left" title data-original-title="NEXT">
+					<span class="glyphicon glyphicon-arrow-right"></span>
+				</div>	
+			
+				<div id="new-topic" class="back floating-action-button float-small" data-toggle="tooltip" data-placement="left" title data-original-title="NEW TOPIC">
+					<span class="glyphicon glyphicon-plus"></span>
+				</div>
+			</div>
+		
+			{{#if onFeature}}
+				<div id="vote-up-feature" class="back floating-action-button" style="background: #fa6c8d; box-shadow: none;" data-toggle="tooltip" data-placement="left" title data-original-title="VOTE UP FEATURE REQUEST">
+					<span class="glyphicon glyphicon-thumbs-up"></span>
+				</div>
+			{{else}}
+				<div id="bookmark" class="floating-action-button float-large" style="background: #FDBB00; box-shadow: none;" data-toggle="tooltip" data-placement="left" title data-original-title="BOOKMARK TOPIC">
+					<span class="glyphicon glyphicon-bookmark"></span>
+				</div>
+			{{/if}}
+		{{else}}
+			<div class="small-action-buttons">
+				<div id="new-feature" class="back floating-action-button float-small float-orange" data-toggle="tooltip" data-placement="left" title data-original-title="NEW FEATURE REQUEST!">
+					<span class="glyphicon glyphicon-star"></span>
+				</div>
+			
+				<div id="new-issue" class="back floating-action-button float-small float-neon-purple" data-toggle="tooltip" data-placement="left" title data-original-title="CREATE ISSUE">
+					<span class="glyphicon glyphicon-tag"></span>
+				</div>	
+			</div>
+		
+			<div id="new-topic" class="floating-action-button float-large" style="box-shadow: none;" data-toggle="tooltip" data-placement="left" title data-original-title="NEW TOPIC">
+				<span class="glyphicon glyphicon-plus"></span>
+			</div>
+		{{/if}}	
+	</div>
+</template>

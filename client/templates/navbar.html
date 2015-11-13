@@ -1,0 +1,62 @@
+<template name="navbar">
+
+	<div style="height: 66px;"></div>
+	
+	<nav class="navbar navbar-inverse" style="
+		border-radius: 0px; 
+		position:fixed; 
+		z-index: 3; 
+		top:0px; 
+		left: 0px; 
+		width: 100%;
+		background: -webkit-linear-gradient(0deg, #0c84e4, rgb(67, 191, 252));
+	">
+	
+	  <div class="container-fluid">
+			
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="/"> 
+					<img src="/images/celebvidy_logo.png" style="  height: 38px;position: relative; top: -8px;" />
+					
+					<span style="position: relative;top: -23px;float: right;font-weight: 200;font-size: 
+					12px;font-style: italic;color: white;margin-right: -7px;">ultimate</span>
+				</a>
+	    </div>
+
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+					<li class="{{isActiveRoute 'Docs'}}"><a href="{{pathFor 'Docs'}}">Docs</a></li>
+					<li class="{{isActiveRoute 'Extensions'}}"><a href="{{pathFor 'Extensions'}}">Extensions</a></li>
+					<li class="{{isActiveRoute 'Discuss'}}"><a href="{{pathFor 'Discuss'}}">Discussion</a></li>
+					
+		      <form class="navbar-form navbar-left" role="search">
+		        <a class="btn btn-default create-extension" style="margin-left:5px;">Add Extension</a>
+		      </form>						
+	      </ul>
+					
+					
+	      <ul class="nav navbar-nav navbar-right" style="margin-right: -30px;">
+					{{#unless currentUser}}
+						{{> loginButtons}}
+					{{else}}
+						<li class="dropdown" style="margin-left:15px;">
+		          <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown" role="button" aria-expanded="false">
+								<span class="glyphicon glyphicon-cog"></span>
+							</a>
+					
+		          <ul class="dropdown-menu" role="menu">
+								<li><a href="#" class="settings-link">Settings</a></li>
+								<li><a href="#" class="reset-link">Reset Database</a></li>
+								<li class="divider"></li>
+				        <li><a href="#" class="logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+		          </ul>	
+		        </li>
+					{{/unless}}
+	      </ul>
+				
+				
+	    </div>
+	  </div>
+	</nav>
+
+</template>

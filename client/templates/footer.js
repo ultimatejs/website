@@ -1,0 +1,3 @@
+Ultimate('footer').extends(UltimateComponent, {
+
+});

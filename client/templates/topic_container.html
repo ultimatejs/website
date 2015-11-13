@@ -1,0 +1,18 @@
+<template name="TopicContainer">
+	<div class="section-title" _id="{{this._id}}">Topic</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading method-signature">
+			{{title}}
+			<i style="float: right; color: white; text-shadow: 1px 1px 1px #2D77A5;">Some Note</i>
+		</div>
+
+		<div class="panel-footer">
+			<b>user</b>
+			<i>category</i>
+			<div style="float:right;">date</div> 
+		</div>
+	</div>
+	
+	{{> Thread}}
+</template>

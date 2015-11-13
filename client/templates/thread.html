@@ -1,0 +1,47 @@
+<template name="Thread">
+	<div class="section-title">Discussion 
+		
+		<div style="float:right">
+			<span class="glyphicon glyphicon-minus" style="cursor:pointer;"></span>
+			<span class="glyphicon glyphicon-align-justify" style="margin: 0 4px; cursor:pointer;"></span>
+		</div>
+	</div>
+	
+	<div class="panel panel-default support-messages">
+		<div class='message-rows'>
+			{{#each posts}}
+				<div class="message {{activePost}}">
+				  <div class="panel-body message-subject" style="height: 43px; overflow:hidden;">
+						 <span style="float:left; width: 88%; line-height: 27px;">
+							 <img src="{{avatar}}" style="height: 30px; margin-right: 8px; float:left;"/>
+							 <b style="float:left;">{{username}}</b>
+							 <div class='excerpt' style="float: left; width: 75%; margin-left: 10px; height: 29px; overflow:hidden;">
+								 {{#unless isExpanded}}<span class='body'>{{#markdown}}{{content}}{{/markdown}}...</span>{{/unless}}
+							 </div>
+						 </span>
+				 
+						 <span style="float:right;">{{formattedDatetime}}</span>
+				  </div>
+		
+					{{#if isExpanded}}
+					  <div class="panel-body message-body">
+							{{#markdown}}
+{{content}}
+							{{/markdown}}
+					  </div>
+					{{/if}}
+				</div>
+			{{/each}}
+		</div>
+	
+	  <div class="panel-body message-form">
+			<div class="textarea-overlay">
+				<a class="btn btn-default canned-responses" style="float: left;"><span class="glyphicon glyphicon-eye-open"></span> PREVIEW</a>
+				<a class="btn btn-default reply">REPLY</a>
+				<div style="clear:both"></div>
+			</div>
+		
+			<textarea rows="4" class="reply-box" placeholder="start typing your response..."></textarea>
+	  </div>
+	</div>
+</template>

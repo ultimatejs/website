@@ -1,0 +1,28 @@
+<template name="TitleBox">
+	<div class="section-title" _id="{{this._id}}" hash="{{hash}}">{{kind}}</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading method-signature">
+			{{signature}}
+			<i style="float: right; color: white; text-shadow: 1px 1px 1px #2D77A5;">{{locus}}</i>
+		</div>
+		
+		<div class="panel-body">
+			{{summary}}
+		</div>
+		
+		<div class="panel-footer">
+			{{#if isEqual kind 'property'}}
+				<b>{{name}}:</b>
+			{{else}}
+				<b>returns</b>
+			{{/if}}
+			
+			<i>{{return_type}}</i>
+			
+			{{#if return_description}}
+				<div style="float:right;">{{{return_description}}}</div> 
+			{{/if}}
+		</div>
+	</div>
+</template>
