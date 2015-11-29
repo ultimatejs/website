@@ -1,7 +1,4 @@
 class Toc extends Ultimate.ComponentModel {
-	includes() {
-		return ['TocMethods', 'MyBookmarks'];
-	}
 	onRendered() {
 		let firstNode = this.component().firstNode();
 		
@@ -10,7 +7,6 @@ class Toc extends Ultimate.ComponentModel {
 				duration: 500, 
 				easing: 'easeInOutQuad',
 				complete: () => {
-					console.log('HASH BABY', this.component().hash())
 					if(!this.component().hash()) {
 						let hash = Class.active().orderedTocMethods(1).hash;
 						Toc.goToHash(hash);
@@ -21,12 +17,16 @@ class Toc extends Ultimate.ComponentModel {
 		}, 900);
 	}
 	autoruns() {
-		let hash = this.hash(),
-			meth = Method.findByHash(hash), //this.hash() is reactive		
-			scrolling = Tracker.nonreactive(() => Session.get('isScrolling'));
+		return [
+			function() {
+				let hash = this.hash(),
+					meth = Method.findByHash(hash), //this.hash() is reactive		
+					scrolling = Tracker.nonreactive(() => Session.get('isScrolling'));
 
-		if(meth) Session.set('activeMethodId', meth._id);
-		if(!scrolling && hash) this._scrollToChapter(hash);
+				if(meth) Session.set('activeMethodId', meth._id);
+				if(!scrolling && hash) this._scrollToChapter(hash);
+			}
+		];
 	}
 	_scrollToChapter(hash) {
 		hash = Method.cleanHash(hash);
@@ -35,16 +35,13 @@ class Toc extends Ultimate.ComponentModel {
 		
 		Session.set('isMethodsAnimating', true);
 		
-		$section.velocity('scroll', {
-			container: $('.task-container'), 
-			duration: 500,
-			easing: 'easeInOutQuad',
-			complete: function() {
-				this.setTimeout(function() {
-					Session.set('isMethodsAnimating', false);
-				}, 150);
-			}.bind(this)
-		});
+		$('.task-container').animate({
+			scrollTop: $section.offset().top - 30 - $section.parent().parent().offset().top
+		}, 500, 'easeInOutCirc', function() {
+			this.setTimeout(function() {
+				Session.set('isMethodsAnimating', false);
+			}, 150);
+		}.bind(this));  
 	}
 	
 	

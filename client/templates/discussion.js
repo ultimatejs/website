@@ -1,8 +1,6 @@
 Discuss = Ultimate.Component.createClass({
 	//infiniteScroll: ['.task-list', 10, '.queue-container'],
 
-	//includes: ['TopicRow', 'TopicSlider', 'KindButton', 'ActionButtons'],
-
 	subscriptions: [
 		{model: 'Topic', limit: 10},
 		{model: 'Topic', with: 'posts', params: 'slug'},
@@ -43,7 +41,6 @@ Discuss = Ultimate.Component.createClass({
 	},
 	selectedTopicAsCursor: function() {
 		let c = this.get('activeTopicId') && Topic.find(this.get('activeTopicId'));
-		console.log('CURSOR', c.fetch());
 		return c;
 	},
 	
@@ -62,7 +59,6 @@ var renderDelay = -150,
 
 TopicRow = Ultimate.createComponentModel({
 	onRendered: function() {
-		console.log('RENDERED', this.className, this)
 		renderDelay += 250;
 		var node = this.component().firstNode();
 		

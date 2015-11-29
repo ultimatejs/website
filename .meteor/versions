@@ -63,6 +63,7 @@ less@2.5.0_3
 livedata@1.0.15
 localstorage@1.0.5
 logging@1.0.8
+matb33:collection-hooks@0.8.1
 meteor@1.1.9
 meteor-base@1.0.1
 meteorhacks:aggregate@1.2.1
@@ -79,6 +80,7 @@ mongo@1.1.2
 mongo-id@1.0.1
 mongo-livedata@1.0.9
 mrt:flash-messages@1.0.1
+mrt:jquery-easing@1.3.0
 mrt:moment@2.8.1
 naxio:flash@0.2.4
 nemo64:bootstrap@3.3.5_2
@@ -114,7 +116,6 @@ templating@1.1.4
 templating-tools@1.0.0
 tracker@1.0.9
 ui@1.0.8
-ultimateide:collection-hooks@0.7.14
 ultimateide:tabular@1.2.3
 ultimateide:ultimate-mvc@0.0.21
 underscore@1.0.4

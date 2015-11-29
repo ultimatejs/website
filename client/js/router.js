@@ -22,7 +22,9 @@ Ultimate('ClientRouter').extends(UltimateRouter, {
 		template: 'Docs'
 	},
 	'docs': {},
-	extensions: {},
+	extensions: {
+		template: 'CommunityExtensions'
+	},
 	
 	'discuss/:slug': {
 		name: 'DiscussTopic',

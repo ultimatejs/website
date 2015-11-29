@@ -1,6 +1,7 @@
 Thread = Ultimate.Component.createClass({
 	onRendered: function() {
-		this.set('activePostId', this.model().posts().last()._id);
+		let topic = this.model().posts().last();
+		if(topic) this.set('activePostId', topic._id);
 	},
 	
 	isExpanded: function() {

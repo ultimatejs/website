@@ -1,9 +1,7 @@
 Docs = Ultimate.ComponentModel.createClass({
 
 	infiniteScroll: ['.task-list', 10, '.queue-container'],
-	includes: [	'ExtensionRow', 'ClassSlider', 'ProgressBar', 
-							'MethodsContainer', 'TitleBox', 'ApiBox', 'ContentBox', 'ExampleBox'],
-
+	
 	subscriptions: [
 		{model: 'Extension', name: 'all', with: 'classes'},
 		function() { return this.subscribeToMethods(); },
@@ -92,8 +90,7 @@ Docs = Ultimate.ComponentModel.createClass({
 });
 
 class CommunityExtensions extends Docs {
-	template() { return 'Extensions' }
-	cloneTemplate() { return 'Docs' }
+
 }
 
 

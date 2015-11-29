@@ -48,3 +48,4 @@ nemo64:bootstrap
 simple:highlight.js
 chuangbo:marked
 #simple:markdown-templating
+mrt:jquery-easing

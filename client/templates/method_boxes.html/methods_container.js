@@ -4,8 +4,8 @@ class MethodsContainer extends Ultimate.Component {
 			firstNode = this.firstNode();
 		
 		this.setTimeout(function() {
-			$(firstNode).on('scroll.methods', throttleFunc);
-		}, 200);
+			$(firstNode).parent().parent().on('scroll.methods', throttleFunc);
+		}, 1200);
 	}
 	onDestroyed() {
 		$('.task-container').off('scroll.methods');
@@ -19,7 +19,7 @@ class MethodsContainer extends Ultimate.Component {
 		
 		var firstVisible = _.find($('.method-container'), el => this.elementIsVisible(el));		
 		Toc.goToHash($(firstVisible).attr('hash'));
-		
+
 		this.setTimeout(() => Session.set('isScrolling', false), 100); //unblock
 	}
 	elementIsVisible(el) {

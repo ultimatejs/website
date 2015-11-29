@@ -16,6 +16,10 @@ Startup = UltimateStartup.createClass({
 		Template.registerHelper('windowHeight', function(subtractValue) {
 			return Session.get('windowHeight') - (subtractValue || 0);
 		});
+		
+		Template.registerHelper('activeRoute', function(route) {
+			return Router.current().route.getName().indexOf(route) === 0 && 'active';	
+		});
 	},
 	miscHelpers: function() {
 		Template.registerHelper('isEqual', function(a, b) {
