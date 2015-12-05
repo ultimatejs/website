@@ -1153,6 +1153,33 @@ table.dataTable.topic-table tbody tr {
 	color: #2B7FB2;
 }
 
+
+.discussion .sidebar-row.list-group-item:hover {
+	background-color: #2099ED !important;
+}
+.discussion  .sidebar-row.list-group-item:hover .list-group-item-heading {
+	color: white;
+}
+.discussion  .sidebar-row.list-group-item:hover .topic-count {
+	color: white;
+	text-shadow: none;
+}
+
+.discussion .sidebar-row.list-group-item:active {
+	background-color: #0D85E4 !important;
+}
+.discussion  .sidebar-row.list-group-item:active .list-group-item-heading {
+	color: white;
+}
+.discussion  .sidebar-row.list-group-item:active .topic-count {
+	color: white;
+	text-shadow: none;
+}
+
+.discussion .sidebar-row.list-group-item .topic-avatars img {
+	background-color: white;
+}
+
 .topic-row-category {
 	background: red; 
 	height: 80%; 

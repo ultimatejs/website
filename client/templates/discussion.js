@@ -17,11 +17,14 @@ Discuss = Ultimate.Component.createClass({
 	
 	sidebarWidth: function() {
 		let windowWidth = Session.get('windowWidth');
-		return (windowWidth * .75) - 70;
+		let contentWidth = this.get('contentWidth') || 150;
+		
+		return windowWidth - contentWidth - 70;
 	},
 	contentWidth: function() {
-		let windowWidth = Session.get('windowWidth');
-		return windowWidth * .25;
+		let contentWidth = this.get('contentWidth') || 150;
+		
+		return contentWidth;
 	},
 	topics: function() {
 		return Topic.find();
@@ -32,11 +35,29 @@ Discuss = Ultimate.Component.createClass({
 
 	
 	'click .sidebar-row': function() {
-		this.go('DiscussTopic', {slug: this.model().slug});
+		let slug = this.model().slug;
+		
+		Session.set('isSliding', true);
+		
+		if(this.get('activeTopicId')) this.go('DiscussTopic', {slug: slug});
+		else {
+			$({width: this.get('contentWidth') || 150}).animate({width: Session.get('windowWidth') - 70 - 500}, {
+			    duration: 1000,
+				easing: 'easeOutExpo',
+				step: (val) => {
+			        this.set('contentWidth', val);
+			    },
+				complete: () => {
+					console.log('AWESOME', this, slug)
+					this.go('DiscussTopic', {slug: slug});
+				}
+			});
+		}
 	},
 	
 	
 	isSelectedTopicAvailable: function() {
+		if(Session.get('isSliding')) return true;
 		return this.get('activeTopicId') && Topic.find(this.get('activeTopicId')).count() && this.ready(1);
 	},
 	selectedTopicAsCursor: function() {
@@ -77,6 +98,7 @@ TopicRow = Ultimate.createComponentModel({
 TopicSlider = Ultimate.createComponentModel({
 	'animateOnChildInsertAndRendered .topic-slider': [{translateZ: 0, opacity: [1, .4], translateX: [0, 'easeInOutQuart', $(window).width()]}, {duration: 1000, complete: function(el) {
 		$(el).css('transform', ''); //translateZ needs to be removed so the element is immediately scrollable again
+		Session.set('isSliding', false);
 	}}],
 	'animateOnChildRemoved .topic-slider': [{translateZ: 0, opacity: [0, 1], translateX: [$(window).width()*-1, 'easeInOutQuart', 0]}, {duration: 1000}],
 });

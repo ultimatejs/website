@@ -63,16 +63,16 @@
 
 
 <template name="TopicSlider">
-	<div class="topic-slider" style="width: 88%; margin-left: 6%;">
-		{{#each selectedTopicAsCursor}}
-			{{> TopicContainer}}
+	<div class="topic-slider" style="width: 88%; margin-left: 6%; position: relative;">
+		{{#each currentTopic}}
+			{{> TopicContainer topic=this}}
 		{{/each}}
 	</div>
 </template>
 
 
 <template name="TopicRow">
-	<tr href="#" class="sidebar-row list-group-item" style="height: 70px;">
+	<tr href="#" class="sidebar-row list-group-item" style="height: 70px; cursor: pointer;">
 		<td class="col-md-6">
 		  <h4 class="list-group-item-heading">{{title}} {{title}} {{title}} {{title}} {{title}} {{title}}</h4>
 		</td>
@@ -81,7 +81,7 @@
 			<span class="topic-row-category">deployment</span>
 		</td>
 		
-		<td style="padding-top: 25px;">
+		<td class="topic-avatars" style="padding-top: 25px;">
 			<img src="https://avatars.githubusercontent.com/faceyspacey" class="topic-avatar" />
 			<img src="https://avatars.githubusercontent.com/faceyspacey" class="topic-avatar" />
 			<img src="https://avatars.githubusercontent.com/faceyspacey" class="topic-avatar" />
